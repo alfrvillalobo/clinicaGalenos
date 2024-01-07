@@ -1,0 +1,52 @@
+<div>
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title class="ion-text-center">
+        Clinica Galenos
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+</div>  
+
+
+<ion-content class="ion-padding ion-text-center">
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col size="12" size-md="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Iniciar Sesión</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-item>
+              <ion-label position="floating">Usuario</ion-label>
+              <ion-input type="text" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Contraseña</ion-label>
+              <ion-input type="password" required></ion-input>
+            </ion-item>
+
+            <ion-button expand="full" color="primary" class="ion-margin-top" [routerLink]="['/main-paciente']">Iniciar Sesión</ion-button>
+
+            
+            <ion-row class="ion-margin-top">
+              <ion-col size="12">
+                <ion-button color="medium" [routerLink]="['/restablecer-password']">Recuperar Contraseña</ion-button>
+              </ion-col>              
+            </ion-row>
+            
+            <ion-row class="ion-text-center">
+              <ion-col size="12">
+                <ion-button color="medium" (click)="register()">Registrarse</ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
