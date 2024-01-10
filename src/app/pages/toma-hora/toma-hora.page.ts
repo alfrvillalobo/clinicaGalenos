@@ -15,6 +15,8 @@ export class TomaHoraPage {
     { nombre: 'Dra. Laura Ramirez', especialidad: 'Otorrinolaringología', horaDisponible: '02:15 PM' },
   ];
 
+  isModalOpen = false;
+
   selectedSucursal: string | null = null;
   selectedEspecialidad: string | null = null;
   medicosFiltrados: any[] = [];
@@ -42,6 +44,10 @@ export class TomaHoraPage {
     this.buscarMedicosClickeado = true;
     // Llamamos a la función para filtrar médicos después de hacer clic en "Buscar Médicos"
     this.filtrarMedicos();
+  }
+
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
   }
   
 }

@@ -15,11 +15,11 @@ const routes: Routes = [
         loadChildren: () => import('../../pages/main-paciente/main-paciente.module').then(m => m.MainPacientePageModule),
       },
       {
-        path: 'Toma de Hora',
+        path: 'TomadeHora',
         loadChildren: () => import('../../pages/toma-hora/toma-hora.module').then(m => m.TomaHoraPageModule),
       },
       {
-        path: 'Mi Agenda',
+        path: 'MiAgenda',
         loadChildren: () => import('../../pages/mi-agenda/mi-agenda.module').then(m => m.MiAgendaPageModule),
       },
       {
