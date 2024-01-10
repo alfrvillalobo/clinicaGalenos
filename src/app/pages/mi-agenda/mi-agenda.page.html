@@ -6,4 +6,23 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-content>
+  <ion-card (click)="mostrarDetalles()">
+    <ion-card-header>
+      <ion-card-title>Medicina General</ion-card-title>
+      <ion-card-subtitle>Hora pendiente</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card *ngIf="mostrarDetallesCard">
+    <ion-card-header>
+      <ion-card-title>Detalles de la Cita</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Doctor: {{ nombreDoctor }}</p>
+      <p>Fecha y Hora: {{ fechaHoraCita }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
 
