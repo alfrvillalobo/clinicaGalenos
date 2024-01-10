@@ -8,3 +8,33 @@
   </ion-header>
 </div>  
 
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label>Nombre:</ion-label>
+      <ion-input [(ngModel)]="nombre" disabled></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>RUT:</ion-label>
+      <ion-input [(ngModel)]="rut" disabled></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Previsión:</ion-label>
+      <ion-input [(ngModel)]="prevision" disabled></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Email:</ion-label>
+      <ion-input [(ngModel)]="email" disabled></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Número de Teléfono:</ion-label>
+      <ion-input [(ngModel)]="numero" disabled></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="full" color="danger" class="boton-cerrar" [routerLink]="['/home']">Cerrar Sesión</ion-button>
+</ion-content>
