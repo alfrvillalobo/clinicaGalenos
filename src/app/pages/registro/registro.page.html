@@ -1,0 +1,41 @@
+<div>
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title class="ion-text-center">
+        Clinica Galenos
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+</div>  
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input [(ngModel)]="nombre" placeholder="Ingrese su nombre"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">RUT</ion-label>
+      <ion-input [(ngModel)]="rut" placeholder="Ingrese su RUT"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Previsión</ion-label>
+      <ion-input [(ngModel)]="prevision" placeholder="Ingrese su previsión"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input [(ngModel)]="email" type="email" placeholder="Ingrese su email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Número</ion-label>
+      <ion-input [(ngModel)]="numero" type="tel" placeholder="Ingrese su número"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="full" (click)="registrar()">Registrar</ion-button>
+
+</ion-content>
