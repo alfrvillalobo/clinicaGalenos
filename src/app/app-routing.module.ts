@@ -42,7 +42,11 @@ const routes: Routes = [
   {
     path: 'tabs',
     loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
+  },  {
+    path: 'examenes',
+    loadChildren: () => import('./pages/examenes/examenes.module').then( m => m.ExamenesPageModule)
   },
+
   
 ];
 

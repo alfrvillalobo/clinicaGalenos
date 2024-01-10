@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-paciente',
-  templateUrl: './main-paciente.page.html',
-  styleUrls: ['./main-paciente.page.scss'],
+  templateUrl: 'main-paciente.page.html',
+  styleUrls: ['main-paciente.page.scss'],
 })
-export class MainPacientePage implements OnInit {
+export class MainPacientePage {
 
-  constructor() { }
+  constructor(private router: Router) {}
 
-  ngOnInit() {
+  
+  irAExamenes(): void {
+    this.router.navigateByUrl;
   }
 
+  
+  irATomarHora(): void {
+    this.router.navigateByUrl;
+  }
 }
+
