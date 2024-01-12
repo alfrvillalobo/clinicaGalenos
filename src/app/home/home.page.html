@@ -21,16 +21,16 @@
           <ion-card-content>
             <ion-item>
               <ion-label position="floating">Usuario</ion-label>
-              <ion-input type="text" required></ion-input>
+              <ion-input type="text" required [(ngModel)]="usuario"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label position="floating">Contraseña</ion-label>
-              <ion-input type="password" required></ion-input>
+              <ion-input type="password" required [(ngModel)]="password"></ion-input>
             </ion-item>
 
-            <ion-button expand="full" color="primary" class="ion-margin-top" [routerLink]="['/tabs/Menu']">Iniciar Sesión</ion-button>
-
+            <ion-button expand="full" color="primary" class="ion-margin-top"  (click)="login()">Iniciar Sesión</ion-button>
+            {{ isLoading ? 'Iniciando Sesión...' : '' }}
             
             <ion-row class="ion-margin-top">
               <ion-col size="12">
