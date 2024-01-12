@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tabs',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabsPage implements OnInit {
 
-  constructor() { }
+  state : any;  
+  constructor(private router : Router) { }
 
-  ngOnInit() {
+  ngOnInit() : void {
+    this.state = this.router.getCurrentNavigation()?.extras.state;
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, NgZone } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { AlertController, AnimationController, Animation } from '@ionic/angular';
 
 @Component({
@@ -24,7 +24,14 @@ export class HomePage {
     this.animateAndNavigate();
   }
 
-  async login() {
+  login() {
+
+    let navigationExtras: NavigationExtras = {
+      state: {
+        usuario : this.usuario
+      }
+    };
+
     if (!this.usuario) {
       this.presentAlert('Necesita ingresar un nombre de usuario');
       return;
@@ -37,30 +44,7 @@ export class HomePage {
 
     this.isLoading = true;
 
-    const loggedIn = await this.simulateLogin();
-
-    if (loggedIn) {
-      this.ngZone.run(() => {
-        this.showLoadingAnimation();
-
-        setTimeout(() => {
-          this.hideLoadingAnimation();
-          this.presentWelcomeAlert();
-          this.router.navigate(['/tabs/Menu']);
-        }, 2000);
-      });
-    } else {
-      this.isLoading = false;
-      this.presentAlert('Usuario o contraseña incorrectos');
-    }
-  }
-
-  simulateLogin(): Promise<boolean> {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(this.usuario === 'pedrito' && this.password === '123456');
-      }, 2000);
-    });
+    this.router.navigate(['./tabs/Menu'], navigationExtras);
   }
 
   async animateAndNavigate() {
@@ -122,4 +106,6 @@ export class HomePage {
 
     await alert.present();
   }
+  
+  
 }
