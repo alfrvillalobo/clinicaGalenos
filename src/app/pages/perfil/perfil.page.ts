@@ -1,6 +1,6 @@
-// perfil.page.ts
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-perfil',
@@ -14,10 +14,32 @@ export class PerfilPage {
   email: string = 'usuario@example.com';
   numero: string = '123456789';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private alertController: AlertController) {}
 
-  cerrarSesion() {
-    
-    this.router.navigateByUrl;
+  async confirmarCerrarSesion() {
+    const alert = await this.alertController.create({
+      header: 'Cerrar Sesión',
+      message: '¿Desea cerrar sesión?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {           
+          },
+        },
+        {
+          text: 'Sí',
+          handler: () => {
+            this.cerrarSesion();
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  cerrarSesion() {    
+    this.router.navigateByUrl('/home');
   }
 }

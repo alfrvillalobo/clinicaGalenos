@@ -21,8 +21,6 @@ export class HomePage {
   ) {}
 
   ionViewWillEnter() {
-    // Esta función se ejecuta cuando la vista está a punto de entrar
-    // Puedes iniciar la animación y la navegación aquí
     this.animateAndNavigate();
   }
 
@@ -39,13 +37,17 @@ export class HomePage {
 
     this.isLoading = true;
 
-    // Simulación de una tarea asíncrona (puedes reemplazar esto con tu lógica de inicio de sesión real)
     const loggedIn = await this.simulateLogin();
 
     if (loggedIn) {
       this.ngZone.run(() => {
-        // Dentro de la zona para asegurarnos de que Angular detecte los cambios
-        this.router.navigate(['/tabs/Menu']);
+        this.showLoadingAnimation();
+
+        setTimeout(() => {
+          this.hideLoadingAnimation();
+          this.presentWelcomeAlert();
+          this.router.navigate(['/tabs/Menu']);
+        }, 2000);
       });
     } else {
       this.isLoading = false;
@@ -54,40 +56,61 @@ export class HomePage {
   }
 
   simulateLogin(): Promise<boolean> {
-    // Simulación de una tarea asíncrona
     return new Promise(resolve => {
       setTimeout(() => {
-        resolve(this.usuario === 'usuario' && this.password === '123456');
+        resolve(this.usuario === 'pedrito' && this.password === '123456');
       }, 2000);
     });
   }
 
   async animateAndNavigate() {
     const loginCardElement = document.querySelector('.login-card');
-
+  
     if (loginCardElement) {
       const animation: Animation = this.animationController.create()
         .addElement(loginCardElement)
         .duration(1000)
         .iterations(1)
-        .fromTo('opacity', '1', '0.1');
-
-      // Promesa que se resuelve cuando la animación ha terminado
+        .fromTo('opacity', '1', '0.1')
+        .fromTo('translateY', '0px', '-100px');
+  
       await animation.play().then(() => {});
-
-      // Después de la animación, navega a la próxima página
+      loginCardElement.classList.add('animated'); // Agrega clase de animación
+  
       this.router.navigate(['/tabs/Menu']);
     } else {
       console.error('Elemento .login-card no encontrado.');
     }
   }
+  
 
-  register() {
-    this.router.navigateByUrl;
+  showLoadingAnimation() {
+    const appRoot = document.querySelector('ion-app');
+    if (appRoot) {
+      appRoot.classList.add('loading-animation');
+    } else {
+      console.error('Elemento ion-app no encontrado.');
+    }
   }
+  
+  hideLoadingAnimation() {
+    const appRoot = document.querySelector('ion-app');
+    if (appRoot) {
+      appRoot.classList.remove('loading-animation');
+    } else {
+      console.error('Elemento ion-app no encontrado.');
+    }
+  }
+  
 
-  restablecerPassword() {
-    this.router.navigateByUrl;
+  async presentWelcomeAlert() {
+    const welcomeAlert = await this.alertController.create({
+      header: 'Bienvenido',
+      message: `¡Bienvenido, ${this.usuario}!`,
+      buttons: ['OK']
+    });
+
+    await welcomeAlert.present();
   }
 
   async presentAlert(message: string) {

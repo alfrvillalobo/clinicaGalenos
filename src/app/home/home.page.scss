@@ -25,3 +25,20 @@
 #container a {
   text-decoration: none;
 }
+
+.login-card {
+  &.animated {
+    animation: your-custom-animation 1s ease-in-out;
+  }
+}
+
+@keyframes your-custom-animation {
+  from {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  to {
+    opacity: 0.1;
+    transform: translateY(-100px);
+  }
+}
