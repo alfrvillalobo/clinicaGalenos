@@ -12,33 +12,39 @@
 </div>  
 
 <ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-label position="stacked">Nombre</ion-label>
-      <ion-input [(ngModel)]="nombre" placeholder="Ingrese su nombre"></ion-input>
-    </ion-item>
+  
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Nombre</ion-label>
+        <ion-input aria-label="nombre" [(ngModel)]="datos.nombre" placeholder="Ingrese su nombre"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">RUT</ion-label>
-      <ion-input [(ngModel)]="rut" placeholder="Ingrese su RUT"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label position="stacked">RUT</ion-label>
+        <ion-input aria-label="rut" [(ngModel)]="datos.rut" placeholder="Ingrese su RUT"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">Previsión</ion-label>
-      <ion-input [(ngModel)]="prevision" placeholder="Ingrese su previsión"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Previsión</ion-label>
+        <ion-input aria-label="prevision" [(ngModel)]="datos.prevision" placeholder="Ingrese su previsión"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">Email</ion-label>
-      <ion-input [(ngModel)]="email" type="email" placeholder="Ingrese su email"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input aria-label="email" [(ngModel)]="datos.correo"  placeholder="Ingrese su email"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">Número</ion-label>
-      <ion-input [(ngModel)]="numero" type="tel" placeholder="Ingrese su número"></ion-input>
-    </ion-item>
-  </ion-list>
+      <ion-item>
+        <ion-label position="stacked">Número</ion-label>
+        <ion-input aria-label="numero" type='number' [(ngModel)]="datos.numero"  placeholder="Ingrese su número"></ion-input>
+      </ion-item>
 
+      <ion-item>
+        <ion-label position="stacked">Contraseña</ion-label>
+        <ion-input aria-label="contraseña" type='password' [(ngModel)]="datos.password" placeholder="Agregue una contraseña"></ion-input>
+      </ion-item>
+    </ion-list>
+  
   <ion-button expand="full" (click)="registrar()">Registrar</ion-button>
 
 </ion-content>

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
+import { HelperService } from 'src/app/services/helper.service';
 
 @Component({
   selector: 'app-perfil',
@@ -14,8 +16,11 @@ export class PerfilPage {
   email: string = 'usuario@example.com';
   numero: string = '123456789';
 
-  constructor(private router: Router, private alertController: AlertController) {}
-
+  constructor(private router: Router, 
+              private alertController: AlertController,
+              private auth: AuthService,
+              private helper: HelperService) {}
+/**
   async confirmarCerrarSesion() {
     const alert = await this.alertController.create({
       header: 'Cerrar Sesión',
@@ -41,5 +46,12 @@ export class PerfilPage {
 
   cerrarSesion() {    
     this.router.navigateByUrl('/home');
+  }
+ */
+  
+  logout() {
+    this.auth.Logut();
+    this.helper.presentToast('Cierre de sesión exitoso');
+    this.router.navigate(['/home']);
   }
 }

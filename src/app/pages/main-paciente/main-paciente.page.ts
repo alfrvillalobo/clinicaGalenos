@@ -6,9 +6,9 @@ import { Router } from '@angular/router';
   templateUrl: 'main-paciente.page.html',
   styleUrls: ['main-paciente.page.scss'],
 })
-export class MainPacientePage {
+export class MainPacientePage implements OnInit{
 
-  
+  state : any;
 
   constructor(private router: Router) {}
 
@@ -22,7 +22,9 @@ export class MainPacientePage {
     this.router.navigateByUrl;
   }
 
-  
+  ngOnInit() : void {
+    this.state = this.router.getCurrentNavigation()?.extras.state;
+  }
 
   
 }

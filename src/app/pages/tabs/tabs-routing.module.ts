@@ -26,6 +26,10 @@ const routes: Routes = [
         path: 'Perfil',
         loadChildren: () => import('../../pages/perfil/perfil.module').then(m => m.PerfilPageModule),
       },
+      {
+        path: 'MainAdmin',
+        loadChildren: () => import('../../pages/main-admin/main-admin.module').then( m => m.MainAdminPageModule),
+      },
     ]
   }
 ];
