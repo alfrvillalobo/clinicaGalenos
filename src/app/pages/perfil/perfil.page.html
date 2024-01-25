@@ -41,5 +41,25 @@
     </ion-card-content>
   </ion-card>
 
+  <ion-card *ngIf="medicData">
+    <ion-card-header class="ion-text-center">
+      <ion-card-title>{{ medicData.nombre }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list lines="full">
+        <ion-item>
+          <ion-label position="stacked">Correo:</ion-label>
+          <ion-text>{{ medicData.correo }}</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Especialidad:</ion-label>
+          <ion-text>{{ medicData.especialidad }}</ion-text>
+        </ion-item>      
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
   <ion-button expand="full" color="danger" class="boton-cerrar" (click)="logout()">Cerrar Sesión</ion-button>
 </ion-content>

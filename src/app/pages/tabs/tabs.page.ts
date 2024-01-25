@@ -11,12 +11,16 @@ export class TabsPage  {
 
    
   isAdmin?: boolean;
+  isMedico?: boolean;
 
   constructor(private authService: AuthService) {
+
     this.authService.getCurrentUser().subscribe(async (user) => {
       this.isAdmin = user ? await this.authService.isAdmin(user.uid) : false;
     });
-  }
 
-  
+    this.authService.getCurrentUser().subscribe(async (user) => {
+      this.isMedico = user ? await this.authService.isMedico(user.uid) : false;
+    });
+  }
 }

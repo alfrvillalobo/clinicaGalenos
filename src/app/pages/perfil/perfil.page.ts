@@ -16,6 +16,7 @@ export class PerfilPage implements OnInit {
   email: string = 'usuario@example.com';
   numero: string = '123456789';
   userData: any;
+  medicData: any;
 
   constructor(private router: Router,            
               private auth: AuthService,
@@ -24,7 +25,8 @@ export class PerfilPage implements OnInit {
     this.auth.getCurrentUser().subscribe(async (user) => {
       if (user) {
         // Aquí puedes hacer algo con la información del usuario
-        this.userData = await this.auth.getUserAdditionalInfo(user.uid);
+        this.userData = await this.auth.getUserAdditionalInfoUsers(user.uid);
+        this.medicData = await this.auth.getUserAdditionalInfoMedico(user.uid);
       }
     });
   }

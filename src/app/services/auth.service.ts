@@ -28,8 +28,18 @@ export class AuthService {
     return this.afAuth.authState;
   }
 
-  async getUserAdditionalInfo(uid: string) {
+  async getUserAdditionalInfoUsers(uid: string) {
     const userDoc = await this.firestore.collection('Usuarios').doc(uid).ref.get();
+    if (userDoc.exists) {
+      return userDoc.data();
+    } else {
+      console.log('Usuario no encontrado en Firestore');
+      return null;
+    }
+  }
+
+  async getUserAdditionalInfoMedico(uid: string) {
+    const userDoc = await this.firestore.collection('medicos').doc(uid).ref.get();
     if (userDoc.exists) {
       return userDoc.data();
     } else {
@@ -43,6 +53,16 @@ export class AuthService {
     if (userDoc.exists) {
       const userData: any = userDoc.data(); // Especifica el tipo como any
       return userData.perfil === 'admin';
+    } else {
+      return false;
+    }
+  }
+
+  async isMedico(uid: string): Promise<boolean> {
+    const userDoc = await this.firestore.collection('medicos').doc(uid).ref.get();
+    if (userDoc.exists) {
+      const userData: any = userDoc.data(); // Especifica el tipo como any
+      return userData.perfil === 'medico';
     } else {
       return false;
     }

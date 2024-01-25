@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { TabsPage } from './tabs.page';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { MedicoGuard } from 'src/app/guards/medico.guard';
 
 
 const routes: Routes = [
@@ -31,6 +32,11 @@ const routes: Routes = [
         loadChildren: () => import('../../pages/main-admin/main-admin.module').then( m => m.MainAdminPageModule),
         canActivate: [AuthGuard],
       },
+      {
+      path: 'mainMedicos',
+      loadChildren: () => import('../../pages/main-medicos/main-medicos.module').then( m => m.MainMedicosPageModule),
+      canActivate: [MedicoGuard]
+      }
     ]
   }
 ];

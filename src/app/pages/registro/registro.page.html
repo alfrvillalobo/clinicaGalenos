@@ -26,8 +26,12 @@
 
       <ion-item>
         <ion-label position="stacked">Previsión</ion-label>
-        <ion-input aria-label="prevision" [(ngModel)]="datos.prevision" placeholder="Ingrese su previsión"></ion-input>
-      </ion-item>
+        <ion-select [(ngModel)]="datos.prevision" placeholder="Seleccione su previsión" label="">
+          <ion-select-option value="fonasa">Fonasa</ion-select-option>
+          <ion-select-option value="isapre">Isapre</ion-select-option>
+          <ion-select-option value="particular">Particular</ion-select-option>
+        </ion-select>
+      </ion-item>      
 
       <ion-item>
         <ion-label position="stacked">Email</ion-label>
