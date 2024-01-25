@@ -37,4 +37,14 @@ export class AuthService {
       return null;
     }
   }
+
+  async isAdmin(uid: string): Promise<boolean> {
+    const userDoc = await this.firestore.collection('admin').doc(uid).ref.get();
+    if (userDoc.exists) {
+      const userData: any = userDoc.data(); // Especifica el tipo como any
+      return userData.perfil === 'admin';
+    } else {
+      return false;
+    }
+  }
 }
