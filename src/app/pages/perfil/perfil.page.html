@@ -9,32 +9,37 @@
 </div>  
 
 <ion-content class="ion-padding">
-  <ion-list>
-    <ion-item>
-      <ion-label>Nombre:</ion-label>
-      <ion-input [(ngModel)]="nombre" disabled></ion-input>
-    </ion-item>
+  <ion-card *ngIf="userData">
+    <ion-card-header class="ion-text-center">
+      <ion-card-title>{{ userData.nombre }}</ion-card-title>
+    </ion-card-header>
 
-    <ion-item>
-      <ion-label>RUT:</ion-label>
-      <ion-input [(ngModel)]="rut" disabled></ion-input>
-    </ion-item>
+    <ion-card-content>
+      <ion-list lines="full">
+        <ion-item>
+          <ion-label position="stacked">Correo:</ion-label>
+          <ion-text>{{ userData.correo }}</ion-text>
+        </ion-item>
 
-    <ion-item>
-      <ion-label>Previsión:</ion-label>
-      <ion-input [(ngModel)]="prevision" disabled></ion-input>
-    </ion-item>
+        <ion-item>
+          <ion-label position="stacked">RUT:</ion-label>
+          <ion-text>{{ userData.rut }}</ion-text>
+        </ion-item>
 
-    <ion-item>
-      <ion-label>Email:</ion-label>
-      <ion-input [(ngModel)]="email" disabled></ion-input>
-    </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Previsión:</ion-label>
+          <ion-text>{{ userData.prevision }}</ion-text>
+        </ion-item>
 
-    <ion-item>
-      <ion-label>Número de Teléfono:</ion-label>
-      <ion-input [(ngModel)]="numero" disabled></ion-input>
-    </ion-item>
-  </ion-list>
+        <ion-item>
+          <ion-label position="stacked">Número:</ion-label>
+          <ion-text>{{ userData.numero }}</ion-text>
+        </ion-item>
+                
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 
   <ion-button expand="full" color="danger" class="boton-cerrar" (click)="logout()">Cerrar Sesión</ion-button>
 </ion-content>
