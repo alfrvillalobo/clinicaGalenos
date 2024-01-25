@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { TabsPage } from './tabs.page';
-import { MainAdminPage } from '../main-admin/main-admin.page';
-import { MainPacientePage } from '../main-paciente/main-paciente.page';
+import { AuthGuard } from 'src/app/guards/auth.guard';
+
 
 const routes: Routes = [
   {
@@ -29,6 +29,7 @@ const routes: Routes = [
       {
         path: 'MainAdmin',
         loadChildren: () => import('../../pages/main-admin/main-admin.module').then( m => m.MainAdminPageModule),
+        canActivate: [AuthGuard],
       },
     ]
   }

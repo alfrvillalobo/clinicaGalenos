@@ -1,37 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { user } from 'src/app/models/usuario';
-import { StorageService } from 'src/app/services/storage.service';
+import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-tabs',
   templateUrl: './tabs.page.html',
   styleUrls: ['./tabs.page.scss'],
 })
-export class TabsPage implements OnInit {
+export class TabsPage  {
 
-  rol: 'paciente' | 'admin' | 'medico' | null = null;
+   
+  isAdmin?: boolean;
 
-
-  state : any;  
-  constructor(private router : Router,
-              private storage: StorageService) { }
-
-  ngOnInit(): void {
-    this.state = this.router.getCurrentNavigation()?.extras.state;
-    if (this.state && this.state.uid) {
-      this.getDatosUser(this.state.uid);
-    }
+  constructor(private authService: AuthService) {
+    this.authService.getCurrentUser().subscribe(async (user) => {
+      this.isAdmin = user ? await this.authService.isAdmin(user.uid) : false;
+    });
   }
+
   
-  getDatosUser(uid: string) {
-    const path = 'Usuarios';
-    const id = uid;
-    this.storage.getDoc<user>(path, id).subscribe( res => {
-      console.log('datos -> ', res);
-      if (res) {
-        this.rol =res.perfil;
-      }
-    })
-  }
 }
