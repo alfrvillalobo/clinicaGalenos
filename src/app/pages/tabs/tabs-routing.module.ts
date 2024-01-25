@@ -33,7 +33,7 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
       {
-      path: 'mainMedicos',
+      path: 'MainMedico',
       loadChildren: () => import('../../pages/main-medicos/main-medicos.module').then( m => m.MainMedicosPageModule),
       canActivate: [MedicoGuard]
       }

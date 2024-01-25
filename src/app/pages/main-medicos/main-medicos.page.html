@@ -1,13 +1,62 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>mainMedicos</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">mainMedicos</ion-title>
+<div>
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-title class="ion-text-center">
+        Clinica Galenos
+      </ion-title>
     </ion-toolbar>
   </ion-header>
+</div>  
+
+<ion-content>
+  
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Nombre del Doctor</ion-label>
+        <ion-input aria-label="nombre del dorctor" [(ngModel)]="datosMedic.nombreMedico" placeholder="Ingrese su nombre"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="stacked">Especialidad</ion-label>
+        <ion-select [(ngModel)]="datosMedic.especialidad" placeholder="Ingrese Especialidad" label="">
+          <ion-select-option value="Medicina General">Medicina General</ion-select-option>
+          <ion-select-option value="Kinesiología">Kinesiología</ion-select-option>
+          <ion-select-option value="Oftalmología">Oftalmología</ion-select-option>
+          <ion-select-option value="Otorrinolaringología">Otorrinolaringología</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Horas Disponibles</ion-label>
+        <ion-select [(ngModel)]="datosMedic.horaDispo" placeholder="Ingrese Horas Disponibles" label="">
+          <ion-select-option value="10:45">10:45</ion-select-option>
+          <ion-select-option value="12:30">12:30</ion-select-option>
+          <ion-select-option value="14:00">14:00</ion-select-option>
+        </ion-select>
+      </ion-item>      
+
+      <ion-item>
+        <ion-label position="stacked">Días Disponibles</ion-label>
+        <ion-select [(ngModel)]="datosMedic.diaDispo" placeholder="Ingrese Días Disponibles" label="">
+          <ion-select-option value="Lunes">Lunes</ion-select-option>
+          <ion-select-option value="Miercoles">Miercoles</ion-select-option>
+          <ion-select-option value="Vienes">Vienes</ion-select-option>
+        </ion-select>
+      </ion-item> 
+
+      <ion-item>
+        <ion-label position="stacked">Sucursal</ion-label>
+        <ion-select [(ngModel)]="datosMedic.sucursal" placeholder="Ingrese Sucursal" label="">
+          <ion-select-option value="Centro Medico Norte">Centro Medico Norte</ion-select-option>
+          <ion-select-option value="Centro Medico Sur">Centro Medico Sur</ion-select-option>
+        </ion-select>
+      </ion-item> 
+
+    </ion-list>
+  
+  <ion-button expand="full" (click)="crearHora()">Crear Hora</ion-button>
+
 </ion-content>

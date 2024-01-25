@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { user } from '../models/usuario/usuario';
+import { user } from '../models/usuario';
 import { Preferences } from '@capacitor/preferences'
 const storagePaciente = 'pacienteData';
 

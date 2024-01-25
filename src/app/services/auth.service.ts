@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { user } from '../models/usuario/usuario';
+import { user } from '../models/usuario';
 import { StorageService } from './storage.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { agenda } from '../models/crearAgenda';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -66,5 +68,24 @@ export class AuthService {
     } else {
       return false;
     }
+  }
+
+  async guardarHora(datosMedic: agenda) {
+    // Validar que todos los campos necesarios estén llenos
+    if (!datosMedic.nombreMedico || !datosMedic.especialidad || !datosMedic.horaDispo || !datosMedic.diaDispo || !datosMedic.sucursal) {
+      throw new Error('Todos los campos deben completarse.');
+    }
+
+    try {
+      // Asegúrate de tener la lógica adecuada para crear la hora en Firestore
+      const result = await this.firestore.collection('HorasMedicas').add(datosMedic);
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  getHorasMedicas(): Observable<agenda[]> {
+    return this.firestore.collection<agenda>('HorasMedicas').valueChanges();
   }
 }
