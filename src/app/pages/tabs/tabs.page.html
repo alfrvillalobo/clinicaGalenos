@@ -1,16 +1,14 @@
 <ion-tabs>
-  <ion-tab-bar slot="bottom">    
-    <ion-item *ngIf="rol === 'paciente'" detail="true">
-      <ion-tab-button tab="TomadeHora" >
-        <ion-icon name="calendar-outline"></ion-icon>
-        Toma de Hora
-      </ion-tab-button>
-    </ion-item>
-    <ion-tab-button *ngIf="rol === 'paciente'" detail="true" tab="Menu" >
+  <ion-tab-bar slot="bottom">       
+    <ion-tab-button tab="TomadeHora" >
+      <ion-icon name="calendar-outline"></ion-icon>
+      Toma de Hora
+    </ion-tab-button>   
+    <ion-tab-button tab="Menu" >
       <ion-icon name="home-outline"></ion-icon>
       Menu
     </ion-tab-button>
-    <ion-tab-button *ngIf="rol === 'paciente'" tab="MiAgenda" >
+    <ion-tab-button tab="MiAgenda" >
       <ion-icon name="file-tray-full-outline"></ion-icon>
       Mi Agenda
     </ion-tab-button>
@@ -18,7 +16,7 @@
       <ion-icon name="person-outline"></ion-icon>
       Perfil
     </ion-tab-button>
-    <ion-tab-button *ngIf="rol === 'admin'" tab="MainAdmin" >
+    <ion-tab-button tab="MainAdmin" >
       <ion-icon name="calendar-outline"></ion-icon>
       Admin
     </ion-tab-button>
