@@ -28,4 +28,5 @@ export class StorageService {
   getId() {
     return this.firestore.createId
   }
+  
 }

@@ -23,10 +23,28 @@
       </ion-header>
       
       <ion-content>
+        <!-- Filtro por especialidad -->
+        <ion-item>
+          <ion-label>Especialidad</ion-label>
+          <ion-select [(ngModel)]="filtroEspecialidad">
+            <ion-option  [value]="especialidad">
+              <ion-select-option value="Medicina General">Medicina General</ion-select-option>
+              <ion-select-option value="Kinesiología">Kinesiología</ion-select-option>
+              <ion-select-option value="Oftalmología">Oftalmología</ion-select-option>
+              <ion-select-option value="Otorrinolaringología">Otorrinolaringología</ion-select-option>
+            </ion-option>
+          </ion-select>
+        </ion-item>
+      
+        <!-- Botones de aplicación y restablecimiento del filtro -->
+        <ion-button (click)="aplicarFiltro()">Aplicar Filtro</ion-button>
+        <ion-button (click)="resetearFiltro()">Restablecer Filtro</ion-button>
+      
+        <!-- Lista de horas médicas -->
         <ion-list>
-          <ion-item *ngFor="let horaMedica of horasMedicas">
-            <!-- Muestra la información de cada hora médica como desees -->
-            <ion-label>{{ horaMedica.nombreMedico }} - {{ horaMedica.especialidad }} - {{ horaMedica.horaDispo }}</ion-label>
+          <ion-item *ngFor="let hora of horasMedicas">
+            <!-- Muestra aquí la información de la hora médica según tus necesidades -->
+            {{ hora.nombreMedico }} - {{ hora.horaDispo }} - {{ hora.diaDispo }} - {{ hora.especialidad }}
           </ion-item>
         </ion-list>
       </ion-content>

@@ -4,7 +4,8 @@ import { user } from '../models/usuario';
 import { StorageService } from './storage.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { agenda } from '../models/crearAgenda';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -87,5 +88,26 @@ export class AuthService {
 
   getHorasMedicas(): Observable<agenda[]> {
     return this.firestore.collection<agenda>('HorasMedicas').valueChanges();
+  }
+  
+  getUniqueSpecialities() {
+    return this.firestore.collection<agenda>('HorasMedicas').get().pipe(
+      map((querySnapshot) => {
+        const especialidades: string[] = [];
+        querySnapshot.forEach((doc) => {
+          const data = doc.data() as agenda;
+          if (data && data.especialidad) {
+            especialidades.push(data.especialidad);
+          }
+        });
+        return Array.from(new Set(especialidades));
+      })
+    );
+  }
+
+  // Agrega este método para obtener las horas médicas filtradas por especialidad
+  getHorasMedicasByEspecialidad(especialidad: string) {
+    return this.firestore.collection<agenda>('HorasMedicas', ref => ref.where('especialidad', '==', especialidad))
+      .valueChanges({ idField: 'id' });
   }
 }
