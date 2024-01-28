@@ -1,0 +1,42 @@
+{
+    "datMedic":[
+        {
+            "id": 1,
+            "nombre": "Juan",
+            "apellido": "Gómez",
+            "email": "juan.gomez@example.com",
+            "numero": "123456789",
+            "image": "assets/imgmedic/medico1.jpg",
+            "especialidad": "Medicina General"
+          },
+          {
+            "id": 2,
+            "nombre": "Ana",
+            "apellido": "Martínez",
+            "email": "ana.martinez@example.com",
+            "numero": "987654321",
+            "image": "assets/imgmedic/medico2.png",
+            "especialidad": "Kinesiología"
+          },
+          {
+            "id": 3,
+            "nombre": "Carlos",
+            "apellido": "López",
+            "email": "carlos.lopez@example.com",
+            "numero": "555666777",
+            "image": "assets/imgmedic/medico3.png",
+            "especialidad": "Oftalmología"
+          },
+          {
+            "id": 4,
+            "nombre": "Laura",
+            "apellido": "Sánchez",
+            "email": "laura.sanchez@example.com",
+            "numero": "777888999",
+            "image": "assets/imgmedic/medico4.png",
+            "especialidad": "Otorrinolaringología"
+          }
+                           
+    ]
+}
+

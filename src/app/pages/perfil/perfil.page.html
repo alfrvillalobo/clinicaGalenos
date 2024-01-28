@@ -61,5 +61,25 @@
     </ion-card-content>
   </ion-card>
 
+  <ion-card *ngIf="adminData">
+    <ion-card-header class="ion-text-center">
+      <ion-card-title>{{ adminData.nombre }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list lines="full">
+        <ion-item>
+          <ion-label position="stacked">Correo:</ion-label>
+          <ion-text>{{ adminData.correo }}</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Perfil:</ion-label>
+          <ion-text>{{ adminData.perfil }}</ion-text>
+        </ion-item>      
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
   <ion-button expand="full" color="danger" class="boton-cerrar" (click)="logout()">Cerrar Sesión</ion-button>
 </ion-content>

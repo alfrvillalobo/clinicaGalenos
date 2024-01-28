@@ -42,7 +42,8 @@ const routes: Routes = [
   {
     path: 'tabs',
     loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
-  },  {
+  },
+  {
     path: 'examenes',
     loadChildren: () => import('./pages/examenes/examenes.module').then( m => m.ExamenesPageModule)
   },
@@ -53,6 +54,10 @@ const routes: Routes = [
   {
     path: 'splash',
     loadChildren: () => import('./pages/splash/splash.module').then( m => m.SplashPageModule)
+  },
+  {
+    path: 'admi-medicos',
+    loadChildren: () => import('./pages/admi-medicos/admi-medicos.module').then( m => m.AdmiMedicosPageModule)
   },
 
   

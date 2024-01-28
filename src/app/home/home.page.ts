@@ -1,9 +1,6 @@
-import { Component, NgZone } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
-import { AlertController, AnimationController, Animation } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
-
-import { ResourceLoader } from '@angular/compiler';
 import { HelperService } from '../services/helper.service';
 
 @Component({
@@ -14,20 +11,16 @@ import { HelperService } from '../services/helper.service';
 export class HomePage {
 
   credenciales = {
-    correo: null,
-    password: null
+    correo: '' as string,
+    password: '' as string
   };
 
   constructor(
-    private router: Router,
-    private alertController: AlertController,
-    private animationController: AnimationController,
-    private ngZone: NgZone,
+    private router: Router,   
     private auth: AuthService,
     private helper: HelperService
   ) {}
 
- 
   async login() {
     let navigationExtras: NavigationExtras = {
       state: {
@@ -35,23 +28,39 @@ export class HomePage {
       }
     };
   
-    if (this.credenciales && this.credenciales.correo !== null && this.credenciales.password !== null) {
+    if (
+      this.credenciales &&
+      this.credenciales.correo.trim() !== '' &&
+      this.credenciales.password.trim() !== ''
+    ) {
       const loader = await this.helper.presentLoandig('Ingresando...');
   
       try {
-        const res = await this.auth.login(this.credenciales.correo, this.credenciales.password);
-        
-        console.log('res -> ', res);
+        const userCredential = await this.auth.login(this.credenciales.correo, this.credenciales.password);
+        const user = userCredential.user;
+       
         loader.dismiss();
-        this.helper.presentToast('Ingresado con éxito');
-        this.router.navigate(['./tabs/Menu'], navigationExtras);
-      } catch (error) {
+  
+        if (user && await this.auth.isAdmin(user.uid)) { // Verifica si user no es nulo
+          this.helper.presentToast('Ingresado como administrador');
+          this.router.navigate(['./tabs/Perfil'], navigationExtras);
+          console.log('Ingresado como administrador');
+        } else {
+          this.helper.presentToast('Ingresado con éxito');
+          this.router.navigate(['./tabs/Menu'], navigationExtras);
+        }
+      } catch (error: any) {
         console.log('error', error);
         loader.dismiss();
-        this.helper.presentToast('Usuario o contraseña inválidos');
+
+        if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+          this.helper.presentToast('Usuario o contraseña incorrectos');
+        } else {
+          this.helper.presentToast('Ocurrió un error durante el inicio de sesión');
+        }
       }
     } else {
       this.helper.presentToast('Por favor, complete todos los campos');
     }
-  }  
+  }
 }

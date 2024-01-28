@@ -36,7 +36,6 @@ export class AuthService {
     if (userDoc.exists) {
       return userDoc.data();
     } else {
-      console.log('Usuario no encontrado en Firestore');
       return null;
     }
   }
@@ -46,7 +45,15 @@ export class AuthService {
     if (userDoc.exists) {
       return userDoc.data();
     } else {
-      console.log('Usuario no encontrado en Firestore');
+      return null;
+    }
+  }
+
+  async getUserAdditionalInfoAdmin(uid: string) {
+    const userDoc = await this.firestore.collection('admin').doc(uid).ref.get();
+    if (userDoc.exists) {
+      return userDoc.data();
+    } else {
       return null;
     }
   }

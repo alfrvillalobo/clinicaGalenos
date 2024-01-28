@@ -10,13 +10,10 @@ import { HelperService } from 'src/app/services/helper.service';
   styleUrls: ['perfil.page.scss'],
 })
 export class PerfilPage implements OnInit {
-  nombre: string = 'Nombre del Usuario';
-  rut: string = '123456789';
-  prevision: string = 'Isapre';
-  email: string = 'usuario@example.com';
-  numero: string = '123456789';
+  
   userData: any;
   medicData: any;
+  adminData: any;
 
   constructor(private router: Router,            
               private auth: AuthService,
@@ -27,6 +24,7 @@ export class PerfilPage implements OnInit {
         // Aquí puedes hacer algo con la información del usuario
         this.userData = await this.auth.getUserAdditionalInfoUsers(user.uid);
         this.medicData = await this.auth.getUserAdditionalInfoMedico(user.uid);
+        this.adminData = await this.auth.getUserAdditionalInfoAdmin(user.uid);
       }
     });
   }
