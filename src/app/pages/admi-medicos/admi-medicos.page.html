@@ -30,6 +30,7 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
   <ion-modal [isOpen]="isModalOpen">
     <ng-template>
       <ion-header>
@@ -43,68 +44,107 @@
 
       <ion-content>
         <ion-list>
-          <ion-item>
-            <ion-label position="floating">Nombre</ion-label>
-            <ion-input
-              aria-label="nombre"
-              [(ngModel)]="nuevoMedico.nombre"
-              type="text"
-            ></ion-input>
-          </ion-item>
+          <form [formGroup]="nuevoMedicoForm">
+            <ion-item>
+              <ion-label position="floating">Nombre</ion-label>
+              <ion-input
+                aria-label="nombre"
+                formControlName="nombre"
+                type="text"
+              ></ion-input>
+            </ion-item>
 
-          <ion-item>
-            <ion-label position="floating">Apellido</ion-label>
-            <ion-input
-              aria-label="apellido"
-              [(ngModel)]="nuevoMedico.apellido"
-              type="text"
-            ></ion-input>
-          </ion-item>
+            <ion-item
+              *ngIf="nuevoMedicoForm.controls['nombre'].hasError('required')"
+            ></ion-item>
 
-          <ion-item>
-            <ion-label position="floating">Email</ion-label>
-            <ion-input
-              aria-label="email"
-              [(ngModel)]="nuevoMedico.email"
-              name="email"
-              type="email"
-            ></ion-input>
-          </ion-item>
+            <ion-item>
+              <ion-label position="floating">Apellido</ion-label>
+              <ion-input
+                aria-label="apellido"
+                formControlName="apellido"
+                type="text"
+              ></ion-input>
+            </ion-item>
 
-          <ion-item>
-            <ion-label position="floating">Número</ion-label>
-            <ion-input
-              aria-label="numero"
-              [(ngModel)]="nuevoMedico.numero"
-              name="numero"
-              type="tel"
-            ></ion-input>
-          </ion-item>
+            <ion-item
+              *ngIf="nuevoMedicoForm.controls['apellido'].hasError('required')"
+            ></ion-item>
 
-          <ion-item>
-            <ion-label position="floating">Especialidad</ion-label>
-            <ion-select [(ngModel)]="nuevoMedico.especialidad" placeholder="Seleccionar Especialidad" label="">
-              <ion-select-option value="Medicina General">Medicina General</ion-select-option>
-              <ion-select-option value="Kinesiología">Kinesiología</ion-select-option>
-              <ion-select-option value="Oftalmología">Oftalmología</ion-select-option>
-              <ion-select-option value="Otorrinolaringología">Otorrinolaringología</ion-select-option>
-            </ion-select>
-          </ion-item>
+            <ion-item>
+              <ion-label position="floating">Email</ion-label>
+              <ion-input
+                aria-label="email"
+                formControlName="email"
+                type="email"
+              ></ion-input>
+            </ion-item>
 
-        
-          <label class="custom-file-input">
-            Imagen
-            <input aria-label="Imagen" type="file" (change)="onFileSelected($event)" accept="image/*" />
-          </label>
-          
+            <ion-item
+              *ngIf="nuevoMedicoForm.controls['email'].hasError('required')"
+            ></ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Numero</ion-label>
+              <ion-input
+                aria-label="numero"
+                formControlName="numero"
+                type="number"
+              ></ion-input>
+            </ion-item>
+
+            <ion-item
+              *ngIf="nuevoMedicoForm.controls['numero'].hasError('required')"
+            ></ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Especialidad</ion-label>
+              <ion-select
+                formControlName="especialidad"
+                placeholder="Seleccionar Especialidad"
+                label=""
+              >
+                <ion-select-option value="Medicina General"
+                  >Medicina General</ion-select-option
+                >
+                <ion-select-option value="Kinesiología"
+                  >Kinesiología</ion-select-option
+                >
+                <ion-select-option value="Oftalmología"
+                  >Oftalmología</ion-select-option
+                >
+                <ion-select-option value="Otorrinolaringología"
+                  >Otorrinolaringología</ion-select-option
+                >
+              </ion-select>
+            </ion-item>
+
+            <ion-item
+              *ngIf="nuevoMedicoForm.controls['especialidad'].hasError('required')"
+            ></ion-item>
+
+            <label class="custom-file-input">
+              Imagen
+              <input
+                aria-label="Imagen"
+                type="file"
+                (change)="onFileSelected($event)"
+                accept="image/*"
+              />
+            </label>
+
+            <ion-button
+              expand="full"
+              [disabled]="!nuevoMedicoForm.valid"
+              (click)="crearMedico()"
+              >Guardar</ion-button
+            >
+          </form>
         </ion-list>
-
-        <ion-button expand="full" (click)="crearMedico()">Guardar</ion-button>
       </ion-content>
     </ng-template>
   </ion-modal>
 
-  <!-- Mostrar formulario de edición si hay un médico seleccionado -->
   <ion-item *ngIf="medicoSeleccionado && !modoEdicion">
     <ion-button expand="full" (click)="activarModoEdicion()"
       >Editar Médico</ion-button
@@ -112,7 +152,6 @@
   </ion-item>
 
   <ion-item *ngIf="medicoSeleccionado && modoEdicion">
-    <!-- Formulario de edición -->
     <ion-label position="floating">Nombre</ion-label>
     <ion-input
       aria-label="nombre"
@@ -130,8 +169,6 @@
       aria-label="numero"
       [(ngModel)]="medicoSeleccionado.numero"
     ></ion-input>
-
-    <!-- Agrega más campos según tus necesidades -->
 
     <ion-button expand="full" (click)="guardarCambios()"
       >Guardar Cambios</ion-button
