@@ -1,12 +1,10 @@
 <div>
   <ion-header>
     <ion-toolbar color="primary">
-      <ion-title class="ion-text-center">
-        Clinica Galenos
-      </ion-title>
+      <ion-title class="ion-text-center"> Clinica Galenos </ion-title>
     </ion-toolbar>
   </ion-header>
-</div>  
+</div>
 
 <ion-content class="ion-padding">
   <ion-card *ngIf="userData">
@@ -35,8 +33,6 @@
           <ion-label position="stacked">Número:</ion-label>
           <ion-text>{{ userData.numero }}</ion-text>
         </ion-item>
-                
-
       </ion-list>
     </ion-card-content>
   </ion-card>
@@ -56,7 +52,7 @@
         <ion-item>
           <ion-label position="stacked">Especialidad:</ion-label>
           <ion-text>{{ medicData.especialidad }}</ion-text>
-        </ion-item>      
+        </ion-item>
       </ion-list>
     </ion-card-content>
   </ion-card>
@@ -76,10 +72,16 @@
         <ion-item>
           <ion-label position="stacked">Perfil:</ion-label>
           <ion-text>{{ adminData.perfil }}</ion-text>
-        </ion-item>      
+        </ion-item>
       </ion-list>
     </ion-card-content>
   </ion-card>
 
-  <ion-button expand="full" color="danger" class="boton-cerrar" (click)="logout()">Cerrar Sesión</ion-button>
+  <ion-button
+    expand="full"
+    color="danger"
+    class="boton-cerrar"
+    (click)="logout()"
+    >Cerrar Sesión</ion-button
+  >
 </ion-content>

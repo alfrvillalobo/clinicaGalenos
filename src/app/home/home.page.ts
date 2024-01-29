@@ -41,13 +41,13 @@ export class HomePage {
        
         loader.dismiss();
   
-        if (user && await this.auth.isAdmin(user.uid)) { // Verifica si user no es nulo
-          this.helper.presentToast('Ingresado como administrador');
-          this.router.navigate(['./tabs/Perfil'], navigationExtras);
-          console.log('Ingresado como administrador');
-        } else {
-          this.helper.presentToast('Ingresado con éxito');
-          this.router.navigate(['./tabs/Menu'], navigationExtras);
+        if (user) {
+          if (await this.auth.isAdmin(user.uid) || await this.auth.isMedico(user.uid)) {
+            this.router.navigate(['./tabs/Perfil'], navigationExtras);
+          } else {
+            this.helper.presentToast('Ingresado con éxito');
+            this.router.navigate(['./tabs/Menu'], navigationExtras);
+          }
         }
       } catch (error: any) {
         console.log('error', error);

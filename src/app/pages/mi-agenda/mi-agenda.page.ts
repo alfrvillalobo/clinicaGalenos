@@ -1,26 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-mi-agenda',
   templateUrl: 'mi-agenda.page.html',
   styleUrls: ['mi-agenda.page.scss'],
 })
-export class MiAgendaPage {
-  mostrarDetallesCard: boolean = false;
-  nombreDoctor: string = 'Nombre del Doctor';
-  fechaHoraCita: string = 'Fecha y Hora de la Cita';
+export class MiAgendaPage implements OnInit {
+  horasTomadas: any[] = []; // Ajusta el tipo según la estructura de tus datos
 
-  mostrarDetalles() {
-    // Si ya se están mostrando los detalles, ocultarlos; de lo contrario, mostrarlos
-    this.mostrarDetallesCard = !this.mostrarDetallesCard;
+  constructor(private firestore: AngularFirestore) {}
 
-    // Si se están mostrando los detalles, obtener y mostrar información
-    if (this.mostrarDetallesCard) {
-      // Lógica para obtener detalles de la cita, por ejemplo, desde un servicio
-      // Aquí se usa información estática como ejemplo
-      this.nombreDoctor = 'Dr. Ejemplo';
-      this.fechaHoraCita = 'Ejemplo: 10 de enero de 2024, 15:00';
-    }
+  ngOnInit() {
+    this.cargarHorasTomadas();
+  }
+
+  cargarHorasTomadas() {
+    // Reemplaza 'horasTomadas' con el nombre correcto de tu colección
+    this.firestore
+      .collection('horasTomadas')
+      .valueChanges({ idField: 'id' })
+      .subscribe((horasTomadas: any[]) => {
+        this.horasTomadas = horasTomadas;
+      });
   }
 }
-

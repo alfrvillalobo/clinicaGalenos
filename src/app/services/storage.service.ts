@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { user } from '../models/usuario';
-import { Preferences } from '@capacitor/preferences'
+import { Preferences } from '@capacitor/preferences';
 const storagePaciente = 'pacienteData';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StorageService {
-
   constructor(private firestore: AngularFirestore) { }
 
   createDoc(data: any, path: string, id: string) {
@@ -16,17 +15,16 @@ export class StorageService {
     return collection.doc(id).set(data);
   }
 
-  getDoc<tipo>(path: string, id: string){
-    return this.firestore.collection(path).doc<tipo>(id).valueChanges()
+  getDoc<tipo>(path: string, id: string) {
+    return this.firestore.collection(path).doc<tipo>(id).valueChanges();
   }
 
   getCollection<tipo>(path: string) {
     const collection = this.firestore.collection<tipo>(path);
-    return collection.valueChanges();  
+    return collection.valueChanges();
   }
 
   getId() {
-    return this.firestore.createId
+    return this.firestore.createId;
   }
-  
 }

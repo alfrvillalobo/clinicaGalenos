@@ -4,3 +4,19 @@
     margin: 10px auto; 
     margin-top: 100px;
 }
+
+.hora-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .info-container {
+    flex: 1;
+  }
+  
+  .nombre-apellido {
+    font-weight: bold;
+  }
+  

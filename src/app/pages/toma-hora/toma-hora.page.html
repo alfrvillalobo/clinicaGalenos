@@ -8,7 +8,7 @@
 
 
 <ion-content>
-<ion-button class="Agendar" expand="full" (click)="setOpen(true)">Agendar Hora</ion-button>
+<ion-button aria-label="" class="Agendar" expand="full" (click)="setOpen(true)">Agendar Hora</ion-button>
   <ion-modal [isOpen]="isModalOpen">
     <ng-template>
       <ion-header>
@@ -23,32 +23,37 @@
       </ion-header>
       
       <ion-content>
-        <!-- Filtro por especialidad -->
+        <!-- Filtro por especialidad-->
         <ion-item>
-          <ion-label>Especialidad</ion-label>
-          <ion-select [(ngModel)]="filtroEspecialidad">
-            <ion-option  [value]="especialidad">
-              <ion-select-option value="Medicina General">Medicina General</ion-select-option>
-              <ion-select-option value="Kinesiología">Kinesiología</ion-select-option>
-              <ion-select-option value="Oftalmología">Oftalmología</ion-select-option>
-              <ion-select-option value="Otorrinolaringología">Otorrinolaringología</ion-select-option>
-            </ion-option>
+          <ion-select aria-label="Especialidad" [(ngModel)]="filtroEspecialidad" placeholder="Seleccione una especialidad">
+            <ion-select-option value="Medicina General">Medicina General</ion-select-option>
+            <ion-select-option value="Kinesiología">Kinesiología</ion-select-option>
+            <ion-select-option value="Oftalmología">Oftalmología</ion-select-option>
+            <ion-select-option value="Otorrinolaringología">Otorrinolaringología</ion-select-option>
           </ion-select>
         </ion-item>
-      
+       
+
+       
         <!-- Botones de aplicación y restablecimiento del filtro -->
         <ion-button (click)="aplicarFiltro()">Aplicar Filtro</ion-button>
         <ion-button (click)="resetearFiltro()">Restablecer Filtro</ion-button>
       
         <!-- Lista de horas médicas -->
         <ion-list>
-          <ion-item *ngFor="let hora of horasMedicas">
-            <!-- Muestra aquí la información de la hora médica según tus necesidades -->
-            {{ hora.nombreMedico }} - {{ hora.horaDispo }} - {{ hora.diaDispo }} - {{ hora.especialidad }}
-          </ion-item>
-        </ion-list>
+          <ion-card *ngFor="let hora of horasMedicas">
+            <ion-card-content>
+              <div class="nombre-apellido">{{ hora.nombre }} {{ hora.apellido }}</div>
+              <div class="detalles">
+                {{ hora.horaDispo }} - {{ hora.diaDispo }} - {{ hora.especialidad }}
+              </div>
+            </ion-card-content>
+            <ion-card-footer>
+              <ion-button expand="full" (click)="guardarHoraTomada(hora)">Guardar Hora</ion-button>
+            </ion-card-footer>
+          </ion-card>
+        </ion-list>               
       </ion-content>
-
     </ng-template>
   </ion-modal>
 </ion-content>

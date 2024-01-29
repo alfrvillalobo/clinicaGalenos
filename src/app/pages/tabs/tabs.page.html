@@ -15,11 +15,7 @@
     <ion-tab-button *ngIf="isAdmin" tab="AdmiMedicos" >
       <ion-icon name="hammer-outline"></ion-icon>
       Edit Medicos
-    </ion-tab-button>
-    <ion-tab-button tab="Perfil" >
-      <ion-icon name="person-outline"></ion-icon>
-      Perfil
-    </ion-tab-button>
+    </ion-tab-button>    
     <ion-tab-button *ngIf="isAdmin" tab="MainAdmin" >
       <ion-icon name="settings-outline"></ion-icon>
       Admin
@@ -27,6 +23,10 @@
     <ion-tab-button *ngIf="isMedico" tab="MainMedico" >
       <ion-icon name="settings-outline"></ion-icon>
       Crear Agenda
+    </ion-tab-button>
+    <ion-tab-button tab="Perfil" >
+      <ion-icon name="person-outline"></ion-icon>
+      Perfil
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

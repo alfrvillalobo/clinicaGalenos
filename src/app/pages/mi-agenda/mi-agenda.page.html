@@ -1,28 +1,30 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title class="ion-text-center">
-      Clinica Galenos
-    </ion-title>
+    <ion-title class="ion-text-center"> Clinica Galenos </ion-title>
   </ion-toolbar>
 </ion-header>
 
+<!--
+  <ion-list>
+    <ion-item *ngFor="let horaTomada of horasTomadas">
+       Muestra aquí la información de la hora tomada según tus necesidades 
+      {{ horaTomada.nombreMedico }} - {{ horaTomada.horaDispo }} - {{ horaTomada.diaDispo }} - {{ horaTomada.especialidad }}
+    </ion-item>
+  </ion-list>
+-->
+
 <ion-content>
-  <ion-card (click)="mostrarDetalles()">
-    <ion-card-header>
-      <ion-card-title>Medicina General</ion-card-title>
-      <ion-card-subtitle>Hora pendiente</ion-card-subtitle>
-    </ion-card-header>
-  </ion-card>
-
-  <ion-card *ngIf="mostrarDetallesCard">
-    <ion-card-header>
-      <ion-card-title>Detalles de la Cita</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>Doctor: {{ nombreDoctor }}</p>
-      <p>Fecha y Hora: {{ fechaHoraCita }}</p>
-    </ion-card-content>
-  </ion-card>
+  <ion-list>
+    <ion-card *ngFor="let horaTomada of horasTomadas">
+      <ion-card-content>
+        <div class="nombre-apellido">
+          {{ horaTomada.nombre }} {{ horaTomada.apellido }}
+        </div>
+        <div class="detalles">
+          {{ horaTomada.horaDispo }} - {{ horaTomada.diaDispo }} - {{
+          horaTomada.especialidad }}
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
 </ion-content>
-
-

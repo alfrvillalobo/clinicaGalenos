@@ -14,12 +14,14 @@ export class MainMedicosPage implements OnInit {
 
   isMedico?: boolean;
   datosMedic: agenda = {
-    nombreMedico: '',   
+    nombre: '',
+    apellido: '',
     especialidad: '',
     horaDispo: '',
     diaDispo: '',
     sucursal: '',
-    uid: ''
+    uid: '',
+    tomada: false
   }
 
   constructor(private authService: AuthService,
@@ -34,9 +36,15 @@ export class MainMedicosPage implements OnInit {
         if (user) {
           this.isMedico = await this.authService.isMedico(user.uid);
     
-          if (!this.isMedico) {
-            console.log('Acceso no autorizado');
-          } 
+          if (this.isMedico) {
+            // Obtener información adicional del médico
+            const medicoData: any = await this.authService.getUserAdditionalInfoMedico(user.uid);
+            if (medicoData) {
+              this.datosMedic.nombre = medicoData.nombre;
+              this.datosMedic.apellido = medicoData.apellido;
+            }
+          } else {
+          }
         }
       });
     }
@@ -64,4 +72,5 @@ export class MainMedicosPage implements OnInit {
         this.helper.loadingController.dismiss();
       }
     }
+
 }
