@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { AlertController } from '@ionic/angular';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertController, NavController } from '@ionic/angular';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { HelperService } from 'src/app/services/helper.service';
 
 @Component({
   selector: 'app-restablecer-password',
@@ -11,51 +13,35 @@ import { Router } from '@angular/router';
 export class RestablecerPasswordPage {
 
   correoForm: FormGroup;
+  correoParaReset: string = '';
+  correo: string = '';
+
 
   constructor(
     private alertController: AlertController,
     private formBuilder: FormBuilder,
-    private router: Router
+    private authService: AuthService,
+    private helper: HelperService,
+    private router: Router,
+    private navCtrl: NavController
   ) {
     // Simplificamos temporalmente la validación eliminando Validators.email
     this.correoForm = this.formBuilder.group({
       correoElectronico: ['', [Validators.required]]
     });
   }
+  
+  async resetPassword() {
+    if (this.correo) {
+      const resetSuccessful = await this.authService.resetPassword(this.correo);
 
-  async enviarCorreo() {
-    console.log('Formulario válido:', this.correoForm.valid);
-
-    if (this.correoForm.valid) {
-      console.log('Enviando correo...');
-
-      // Aquí iría la lógica para enviar el correo electrónico
-
-      const alert = await this.alertController.create({
-        header: 'Correo Enviado',
-        message: 'Se ha enviado un mensaje a su correo electrónico.',
-        buttons: [
-          {
-            text: 'OK',
-            handler: () => {
-              // Redirección a la página de home
-              this.router.navigate(['/home']);
-            }
-          }
-        ]
-      });
-
-      await alert.present();
+      if (resetSuccessful !== undefined && resetSuccessful) {
+        console.log('Correo de restablecimiento enviado correctamente.');
+      } else {
+        console.error('Error al enviar el correo de restablecimiento.');
+      }
     } else {
-      console.log('Formulario inválido. Detalles:', this.correoForm.errors);
-
-      const alert = await this.alertController.create({
-        header: 'Error',
-        message: 'Ingrese un correo electrónico válido. Asegúrese de seguir el formato correcto.',
-        buttons: ['OK']
-      });
-
-      await alert.present();
+      console.error('Por favor, ingresa tu dirección de correo electrónico.');
     }
   }
 }

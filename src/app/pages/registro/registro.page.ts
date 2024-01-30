@@ -25,8 +25,6 @@ export class RegistroPage {
   }
 
   constructor(
-    private alertController: AlertController,
-    private navCtrl: NavController,
     private auth: AuthService,
     private store: StorageService,
     private helper: HelperService,
@@ -34,12 +32,16 @@ export class RegistroPage {
   ) {}
 
   async registrar() {
+    if (!this.datos.nombre || !this.datos.correo || !this.datos.rut || !this.datos.prevision || !this.datos.numero || !this.datos.password) {
+      this.helper.presentToast('Todos los campos son obligatorios');
+      return;
+    }
+  
     this.helper.presentLoandig('Registrando...');
-
+  
     try {
-      
       const res = await this.auth.registrarUser(this.datos);
-
+  
       if (res && res.user) {
         console.log('exito al crear usuario');
         const path = 'Usuarios';
@@ -51,13 +53,12 @@ export class RegistroPage {
         this.router.navigate(['/home']);
       } else {
         this.helper.presentToast('Error en el registro');
-        console.log('Error: ', res); 
       }
     } catch (error) {
       this.helper.presentToast('Error en el registro');
-      console.log('Error: ', error);
     } finally {
       this.helper.loadingController.dismiss();
     }
   }
+  
 }

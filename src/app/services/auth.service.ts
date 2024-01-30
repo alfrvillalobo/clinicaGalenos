@@ -13,7 +13,8 @@ export class AuthService {
   constructor(
     private angularfire: AngularFireAuth,
     private afAuth: AngularFireAuth,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private nfFireAuth: AngularFireAuth
   ) {}
 
   login(correo: string, password: string) {
@@ -31,6 +32,10 @@ export class AuthService {
     );
   }
 
+  async resetPassword(correo: string) {
+    return this.afAuth.sendPasswordResetEmail(correo);
+  }
+  
   getCurrentUser() {
     return this.afAuth.authState;
   }
